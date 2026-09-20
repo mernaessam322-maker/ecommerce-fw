@@ -1,0 +1,313 @@
+@if (productIdData()._id) {
+  <section class="p-4 md:p-8">
+    <div class="container max-w-6xl mx-auto">
+      <div
+        class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-12"
+      >
+
+        <!-- ==================== Images ==================== -->
+        <div class="space-y-4">
+
+          <!-- Main Image -->
+          <div
+            class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm"
+          >
+            <img
+              [src]="productIdData().imageCover"
+              [alt]="productIdData().title"
+              class="w-full object-cover"
+            />
+          </div>
+
+          <!-- Product Images -->
+          @if (productIdData().images?.length) {
+            <div class="grid grid-cols-4 gap-3">
+
+              @for (
+                image of productIdData().images;
+                track image
+              ) {
+                <div
+                  class="bg-gray-50 rounded-xl overflow-hidden border border-gray-100 shadow-sm cursor-pointer hover:border-emerald-500 transition"
+                >
+                  <img
+                    [src]="image"
+                    [alt]="productIdData().title"
+                    class="w-full h-24 object-cover"
+                  />
+                </div>
+              }
+
+            </div>
+          }
+
+        </div>
+
+
+        <!-- ==================== Product Information ==================== -->
+        <div class="flex flex-col gap-6">
+
+          <!-- Category + Brand -->
+          <div class="space-y-3">
+
+            <div class="flex flex-wrap gap-2">
+
+              <span
+                class="bg-emerald-50 text-emerald-600 text-xs px-2.5 py-1 rounded-full font-medium"
+              >
+                {{ productIdData().category.name }}
+              </span>
+
+              <span
+                class="bg-gray-100 text-gray-600 text-xs px-2.5 py-1 rounded-full font-medium"
+              >
+                {{ productIdData().brand.name }}
+              </span>
+
+            </div>
+
+
+            <!-- Title -->
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900">
+              {{ productIdData().title }}
+            </h1>
+
+
+            <!-- Rating -->
+            <div class="flex items-center gap-2">
+
+              <div class="flex text-yellow-400 text-sm gap-0.5">
+
+                @for (
+                  star of [1, 2, 3, 4, 5];
+                  track star
+                ) {
+
+                  @if (star <= productIdData().ratingsAverage) {
+                    <i class="fas fa-star"></i>
+                  } @else {
+                    <i class="far fa-star text-gray-300"></i>
+                  }
+
+                }
+
+              </div>
+
+              <span class="text-sm text-gray-500 font-medium">
+                {{ productIdData().ratingsAverage }}
+                ({{ productIdData().ratingsQuantity }} reviews)
+              </span>
+
+            </div>
+
+
+            <!-- Price -->
+            <p class="text-2xl font-bold text-slate-900">
+              {{ productIdData().price }} EGP
+            </p>
+
+
+            <!-- Stock -->
+            @if (productIdData().quantity > 0) {
+
+              <span
+                class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full"
+              >
+                <span
+                  class="w-2 h-2 rounded-full bg-emerald-500"
+                ></span>
+
+                In Stock
+              </span>
+
+            } @else {
+
+              <span
+                class="inline-flex items-center gap-1.5 text-xs font-bold text-red-600 bg-red-50 px-3 py-1 rounded-full"
+              >
+                <span
+                  class="w-2 h-2 rounded-full bg-red-500"
+                ></span>
+
+                Out of Stock
+              </span>
+
+            }
+
+          </div>
+
+
+          <!-- Description -->
+          <p
+            class="text-sm text-gray-500 leading-relaxed max-w-md"
+          >
+            {{ productIdData().description }}
+          </p>
+
+
+          <!-- Subcategories -->
+          @if (productIdData().subcategory?.length) {
+
+            <div class="flex flex-wrap gap-2">
+
+              @for (
+                subcategory of productIdData().subcategory;
+                track subcategory._id
+              ) {
+
+                <span
+                  class="bg-gray-100 text-gray-600 text-xs px-3 py-1.5 rounded-full"
+                >
+                  {{ subcategory.name }}
+                </span>
+
+              }
+
+            </div>
+
+          }
+
+
+          <!-- Product Quantity -->
+          <div class="flex items-center gap-3">
+
+            <span class="text-sm font-medium text-gray-600">
+              Available:
+            </span>
+
+            <span class="text-sm font-bold text-slate-900">
+              {{ productIdData().quantity }}
+            </span>
+
+          </div>
+
+
+          <!-- Buttons -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2"
+          >
+
+            <button
+              type="button"
+              class="w-full cursor-pointer bg-emerald-600 text-white font-bold py-3.5 rounded-xl hover:bg-emerald-700 transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-100"
+            >
+              <i class="fas fa-shopping-cart"></i>
+              Add to Cart
+            </button>
+
+            <button
+              type="button"
+              class="border cursor-pointer border-gray-200 py-3 rounded-xl font-bold text-gray-700 hover:bg-gray-50 transition-all"
+            >
+              <i class="far fa-heart"></i>
+              Add to Wishlist
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ==================== Reviews ==================== -->
+
+      @if (productIdData().reviews?.length) {
+
+        <div class="mt-12 border-t border-gray-100 pt-8">
+
+          <div class="flex items-center justify-between mb-6">
+
+            <h2 class="text-2xl font-bold text-slate-900">
+              Customer Reviews
+            </h2>
+
+            <span
+              class="text-sm text-gray-500"
+            >
+              {{ productIdData().ratingsQuantity }} Reviews
+            </span>
+
+          </div>
+
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            @for (
+              review of productIdData().reviews;
+              track review._id
+            ) {
+
+              <div
+                class="border border-gray-100 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow"
+              >
+
+                <!-- User + Rating -->
+                <div
+                  class="flex items-center justify-between gap-4 mb-3"
+                >
+
+                  <div class="flex items-center gap-3">
+
+                    <div
+                      class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold"
+                    >
+                      {{ review.user.name.charAt(0) }}
+                    </div>
+
+                    <div>
+
+                      <h3 class="font-bold text-slate-900">
+                        {{ review.user.name }}
+                      </h3>
+
+                      <p class="text-xs text-gray-400">
+                        {{ review.createdAt | date }}
+                      </p>
+
+                    </div>
+
+                  </div>
+
+
+                  <!-- Review Rating -->
+                  <div
+                    class="flex text-yellow-400 text-sm gap-0.5"
+                  >
+
+                    @for (
+                      star of [1, 2, 3, 4, 5];
+                      track star
+                    ) {
+
+                      @if (star <= review.rating) {
+                        <i class="fas fa-star"></i>
+                      } @else {
+                        <i class="far fa-star text-gray-300"></i>
+                      }
+
+                    }
+
+                  </div>
+
+                </div>
+
+
+                <!-- Review Content -->
+                <p class="text-sm text-gray-500 leading-relaxed">
+                  {{ review.review }}
+                </p>
+
+              </div>
+
+            }
+
+          </div>
+
+        </div>
+
+      }
+
+    </div>
+  </section>
+}
