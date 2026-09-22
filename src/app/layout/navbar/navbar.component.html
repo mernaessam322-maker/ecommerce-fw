@@ -30,6 +30,9 @@
       <a routerLink="/" class="font-medium text-gray-700 transition-colors hover:text-emerald-600"
         >Home</a
       >
+      <a routerLink="/allorders" class="font-medium text-gray-700 transition-colors hover:text-emerald-600"
+        >My orders</a >
+
       <a
         routerLink="/shop"
         class="font-medium text-gray-700 transition-colors hover:text-emerald-600"
@@ -93,8 +96,8 @@
       <div class="hidden sm:flex items-center gap-4 pl-2 md:border-l md:border-gray-200 md:pl-4">
         @if (logged()) {
           <button
-          type="button"
-          (click)="signOut()"
+            type="button"
+            (click)="signOut()"
             class="flex items-center cursor-pointer gap-2 font-medium text-gray-700 transition-colors hover:text-emerald-600"
           >
             <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
@@ -106,7 +109,7 @@
           >
             <i class="fas fa-user-plus text-lg"></i> Sign In
           </a>
-             <a
+          <a
             routerLink="/register"
             class="flex items-center gap-2 font-medium text-gray-700 transition-colors hover:text-emerald-600"
           >

@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProductsService } from '../../core/auth/services/products/products.service';
 import { ProductDetails } from '../../core/models/product-details.interface';
 import { DatePipe } from '@angular/common';
@@ -14,6 +14,7 @@ import { DatePipe } from '@angular/common';
 export class DetailsComponent implements OnInit {
   private readonly activatedRoute = inject(ActivatedRoute);
     private readonly productsService = inject(ProductsService);
+    
 
 
   productId:WritableSignal<string> = signal<string>('');

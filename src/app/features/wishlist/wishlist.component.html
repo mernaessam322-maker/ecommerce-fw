@@ -1,1 +1,198 @@
-<p>wishlist works!</p>
+<div class="min-h-screen bg-white">
+  <!-- ================= HEADER ================= -->
+  <div class="border-b border-gray-200 px-5 py-6 md:px-10">
+    <div class="flex items-center gap-5">
+      <!-- Wishlist Icon -->
+      <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-red-50">
+        <svg class="h-7 w-7 fill-red-500 text-red-500" viewBox="0 0 24 24">
+          <path
+            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"
+          />
+        </svg>
+      </div>
+
+      <!-- Title -->
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900 md:text-3xl">My Wishlist</h1>
+
+        <p class="mt-1 text-base text-gray-500">{{ wishListDetailsData().length }} items saved</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CONTENT ================= -->
+  <div class="px-5 py-10 md:px-10">
+    <!-- ================= EMPTY STATE ================= -->
+    @if (wishListDetailsData().length === 0) {
+      <div
+        class="flex min-h-100 flex-col items-center justify-center rounded-2xl border border-gray-200 bg-white px-5 text-center"
+      >
+        <!-- Empty Icon -->
+        <div class="mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-gray-50">
+          <svg
+            class="h-12 w-12 text-gray-300"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"
+            />
+          </svg>
+        </div>
+
+        <h2 class="text-2xl font-semibold text-gray-900">Your Wishlist is Empty</h2>
+
+        <p class="mt-2 max-w-md text-gray-500">
+          You haven't added any products to your wishlist yet. Start exploring and save your
+          favorite products.
+        </p>
+
+        <a
+          routerLink="/products"
+          class="mt-7 rounded-lg bg-green-600 px-6 py-3 text-base font-medium text-white transition hover:bg-green-700"
+        >
+          Start Shopping
+        </a>
+      </div>
+    }
+
+    <!-- ================= PRODUCTS ================= -->
+    @else {
+      <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white">
+        <!-- Table Header -->
+        <div
+          class="hidden grid-cols-[minmax(400px,1fr)_180px_180px_280px] border-b border-gray-100 bg-gray-50 px-7 py-6 text-base text-gray-600 lg:grid"
+        >
+          <div>Product</div>
+
+          <div>Price</div>
+
+          <div>Status</div>
+
+          <div class="text-center">Actions</div>
+        </div>
+
+        <!-- Product Rows -->
+        @for (item of wishListDetailsData(); track item._id) {
+          <div
+            class="grid gap-6 border-b border-gray-100 px-5 py-6 last:border-b-0 md:px-7 lg:grid-cols-[minmax(400px,1fr)_180px_180px_280px] lg:items-center lg:gap-0"
+          >
+            <!-- ================= PRODUCT ================= -->
+            <div class="flex items-center gap-5">
+              <!-- Image -->
+              <div
+                class="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-gray-100 bg-gray-50"
+              >
+                <img
+                  [src]="item.imageCover"
+                  [alt]="item.title"
+                  class="h-full w-full object-contain"
+                />
+              </div>
+
+              <!-- Product Info -->
+              <div class="min-w-0">
+                <h2 class="truncate text-lg font-medium text-gray-900">
+                  {{ item.title }}
+                </h2>
+
+                <p class="mt-1 text-sm text-gray-400">
+                  {{ item.category?.name }}
+                </p>
+              </div>
+            </div>
+
+            <!-- ================= PRICE ================= -->
+            <div>
+              <span class="text-lg font-semibold text-gray-900"> {{ item.price }} EGP </span>
+            </div>
+
+            <!-- ================= STATUS ================= -->
+            <div>
+              @if (item.quantity > 0) {
+                <span
+                  class="inline-flex items-center gap-2 rounded-full bg-green-50 px-4 py-2 text-sm font-medium text-green-700"
+                >
+                  <span class="h-2 w-2 rounded-full bg-green-500"></span>
+
+                  In Stock
+                </span>
+              } @else {
+                <span
+                  class="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-2 text-sm font-medium text-red-700"
+                >
+                  <span class="h-2 w-2 rounded-full bg-red-500"></span>
+
+                  Out of Stock
+                </span>
+              }
+            </div>
+
+            <!-- ================= ACTIONS ================= -->
+            <div class="flex items-center gap-3 lg:justify-center">
+              <!-- Add To Cart -->
+              <button
+                type="button"
+                [disabled]="item.quantity === 0"
+                class="inline-flex items-center gap-3 rounded-lg bg-green-600 px-5 py-3 text-base font-medium text-white transition hover:bg-green-700 disabled:cursor-not-allowed disabled:bg-gray-300"
+              >
+                <svg
+                  class="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 4h12M9 21h.01M18 21h.01"
+                  />
+                </svg>
+
+                Add to Cart
+              </button>
+
+              <!-- Delete -->
+              <button
+                (click)="removeItemFromWishlist(item._id)"
+                type="button"
+                class="flex h-12 w-12 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-400 transition hover:border-red-200 hover:bg-red-50 hover:text-red-500"
+              >
+                <svg
+                  class="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- ================= CONTINUE SHOPPING ================= -->
+      <div class="mt-10">
+        <a
+          routerLink="/products"
+          class="inline-flex items-center text-base font-medium text-gray-600 transition hover:text-gray-900"
+        >
+          <span class="mr-1 text-xl">←</span>
+
+          Continue Shopping
+        </a>
+      </div>
+    }
+  </div>
+</div>

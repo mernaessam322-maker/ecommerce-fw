@@ -1,1 +1,687 @@
-<p>checkout works!</p>
+<div class="min-h-screen bg-gray-50 py-5">
+
+  <div class="max-w-7xl mx-auto px-5">
+
+    <!-- Breadcrumb -->
+    <nav class="flex mb-4" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-2 text-xs text-gray-500">
+
+        <li>
+          <a routerLink="/home" class="hover:text-green-600">
+            Home
+          </a>
+        </li>
+
+        <li class="text-gray-400">/</li>
+
+        <li>
+          <a routerLink="/cart" class="hover:text-green-600">
+            Cart
+          </a>
+        </li>
+
+        <li class="text-gray-400">/</li>
+
+        <li class="text-green-600 font-medium">
+          Checkout
+        </li>
+
+      </ol>
+    </nav>
+
+
+    <!-- Page Header -->
+    <div class="flex items-center justify-between mb-6">
+
+      <div>
+
+        <div class="flex items-center gap-3">
+
+          <div
+            class="w-9 h-9 rounded-lg bg-green-600 flex items-center justify-center text-white"
+          >
+            <i class="fa-solid fa-receipt"></i>
+          </div>
+
+          <h1 class="text-2xl font-bold text-gray-900">
+            Complete Your Order
+          </h1>
+
+        </div>
+
+        <p class="text-sm text-gray-500 mt-1">
+          Review your items and complete your purchase
+        </p>
+
+      </div>
+
+      <a
+        routerLink="/cart"
+        class="text-sm text-green-600 hover:text-green-700 flex items-center gap-2"
+      >
+        <i class="fa-solid fa-arrow-left"></i>
+        Back to Cart
+      </a>
+
+    </div>
+
+
+    <!-- ================= CHECKOUT FORM ================= -->
+
+    <form
+      [formGroup]="checkoutForm"
+      (ngSubmit)="submitForm()"
+    >
+
+      <!-- Main Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+
+
+        <!-- ================= LEFT SIDE ================= -->
+
+        <div class="lg:col-span-2 space-y-5">
+
+
+          <!-- ================= SHIPPING ADDRESS ================= -->
+
+          <div
+            class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden"
+          >
+
+            <!-- Header -->
+            <div class="bg-green-600 text-white px-4 py-3">
+
+              <div class="flex items-center gap-2 font-semibold">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>
+                  Shipping Address
+                </span>
+
+              </div>
+
+              <p class="text-xs text-green-100 mt-1">
+                Where should we deliver your order?
+              </p>
+
+            </div>
+
+
+            <!-- Body -->
+            <div class="p-4">
+
+              <!-- Information -->
+              <div
+                class="flex gap-3 items-start bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4"
+              >
+
+                <div class="text-blue-600 mt-0.5">
+                  <i class="fa-solid fa-circle-info"></i>
+                </div>
+
+                <div>
+
+                  <p class="text-xs font-medium text-blue-700">
+                    Delivery Information
+                  </p>
+
+                  <p class="text-2xs text-blue-600 mt-0.5">
+                    Please ensure your address is accurate for smooth delivery
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <!-- FORM GROUP -->
+              <div formGroupName="shippingAddress">
+
+
+                <!-- CITY -->
+                <div class="mb-4">
+
+                  <label
+                    for="city"
+                    class="block mb-2 text-xs font-medium text-gray-700"
+                  >
+                    City <span class="text-red-500">*</span>
+                  </label>
+
+                  <div class="relative">
+
+                    <div
+                      class="absolute inset-y-0 inset-s-0 flex items-center ps-3 pointer-events-none text-gray-400"
+                    >
+                      <i class="fa-solid fa-city"></i>
+                    </div>
+
+                    <input
+                      type="text"
+                      id="city"
+                      formControlName="city"
+                      class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full ps-10 p-3"
+                      placeholder="e.g. Cairo, Alexandria, Giza"
+                    />
+
+                  </div>
+
+
+                  <!-- City Error -->
+                  @if (
+                    checkoutForm.get('shippingAddress.city')?.invalid &&
+                    checkoutForm.get('shippingAddress.city')?.touched
+                  ) {
+
+                    <p class="mt-1 text-xs text-red-500">
+                      City is required
+                    </p>
+
+                  }
+
+                </div>
+
+
+                <!-- STREET ADDRESS -->
+                <div class="mb-4">
+
+                  <label
+                    for="details"
+                    class="block mb-2 text-xs font-medium text-gray-700"
+                  >
+                    Street Address <span class="text-red-500">*</span>
+                  </label>
+
+                  <div class="relative">
+
+                    <div
+                      class="absolute top-3.5 inset-s-0 flex items-center ps-3 pointer-events-none text-gray-400"
+                    >
+                      <i class="fa-solid fa-location-dot"></i>
+                    </div>
+
+                    <textarea
+                      id="details"
+                      rows="2"
+                      formControlName="details"
+                      class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full ps-10 p-3 resize-none"
+                      placeholder="Street name, building number, floor, apartment..."
+                    ></textarea>
+
+                  </div>
+
+
+                  <!-- Details Error -->
+                  @if (
+                    checkoutForm.get('shippingAddress.details')?.invalid &&
+                    checkoutForm.get('shippingAddress.details')?.touched
+                  ) {
+
+                    <p class="mt-1 text-xs text-red-500">
+                      Street address is required
+                    </p>
+
+                  }
+
+                </div>
+
+
+                <!-- PHONE -->
+                <div>
+
+                  <label
+                    for="phone"
+                    class="block mb-2 text-xs font-medium text-gray-700"
+                  >
+                    Phone Number <span class="text-red-500">*</span>
+                  </label>
+
+                  <div class="relative">
+
+                    <div
+                      class="absolute inset-y-0 inset-s-0 flex items-center ps-3 pointer-events-none text-gray-400"
+                    >
+                      <i class="fa-solid fa-phone"></i>
+                    </div>
+
+                    <input
+                      type="tel"
+                      id="phone"
+                      formControlName="phone"
+                      class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full ps-10 p-3"
+                      placeholder="01xxxxxxxxx"
+                    />
+
+                  </div>
+
+
+                  <!-- Phone Error -->
+                  @if (
+                    checkoutForm.get('shippingAddress.phone')?.invalid &&
+                    checkoutForm.get('shippingAddress.phone')?.touched
+                  ) {
+
+                    <p class="mt-1 text-xs text-red-500">
+                      Please enter a valid Egyptian phone number
+                    </p>
+
+                  }
+
+                </div>
+
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- ================= PAYMENT METHOD ================= -->
+
+          <div
+            class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden"
+          >
+
+            <!-- Header -->
+            <div class="bg-green-600 text-white px-4 py-3">
+
+              <div class="flex items-center gap-2 font-semibold">
+
+                <i class="fa-solid fa-credit-card"></i>
+
+                <span>
+                  Payment Method
+                </span>
+
+              </div>
+
+              <p class="text-xs text-green-100 mt-1">
+                Choose how you'd like to pay
+              </p>
+
+            </div>
+
+
+            <!-- Payment Options -->
+            <div class="p-4 space-y-3">
+
+
+              <!-- CASH -->
+              <button
+                type="button"
+                (click)="selectPaymentMethod('cash')"
+                class="w-full text-left border rounded-lg p-3 flex items-center justify-between transition-all"
+                [class.border-green-500]="paymentMethod() === 'cash'"
+                [class.bg-green-50]="paymentMethod() === 'cash'"
+                [class.border-gray-200]="paymentMethod() !== 'cash'"
+              >
+
+                <div class="flex items-center gap-3">
+
+                  <div
+                    class="w-9 h-9 rounded-lg flex items-center justify-center"
+                    [class.bg-green-600]="paymentMethod() === 'cash'"
+                    [class.text-white]="paymentMethod() === 'cash'"
+                    [class.bg-gray-100]="paymentMethod() !== 'cash'"
+                    [class.text-gray-400]="paymentMethod() !== 'cash'"
+                  >
+
+                    <i class="fa-solid fa-money-bill-wave"></i>
+
+                  </div>
+
+                  <div>
+
+                    <p class="text-sm font-semibold text-gray-800">
+                      Cash on Delivery
+                    </p>
+
+                    <p class="text-xs text-gray-500 mt-0.5">
+                      Pay when your order arrives at your doorstep
+                    </p>
+
+                  </div>
+
+                </div>
+
+
+                <!-- Check -->
+                <div
+                  class="w-5 h-5 rounded-full flex items-center justify-center"
+                  [class.bg-green-600]="paymentMethod() === 'cash'"
+                  [class.text-white]="paymentMethod() === 'cash'"
+                  [class.border]="paymentMethod() !== 'cash'"
+                  [class.border-gray-300]="paymentMethod() !== 'cash'"
+                >
+
+                  @if (paymentMethod() === 'cash') {
+
+                    <i class="fa-solid fa-check text-2xs"></i>
+
+                  }
+
+                </div>
+
+              </button>
+
+
+              <!-- ONLINE -->
+              <button
+                type="button"
+                (click)="selectPaymentMethod('online')"
+                class="w-full text-left border rounded-lg p-3 flex items-center justify-between transition-all"
+                [class.border-green-500]="paymentMethod() === 'online'"
+                [class.bg-green-50]="paymentMethod() === 'online'"
+                [class.border-gray-200]="paymentMethod() !== 'online'"
+              >
+
+                <div class="flex items-center gap-3">
+
+                  <div
+                    class="w-9 h-9 rounded-lg flex items-center justify-center"
+                    [class.bg-green-600]="paymentMethod() === 'online'"
+                    [class.text-white]="paymentMethod() === 'online'"
+                    [class.bg-gray-100]="paymentMethod() !== 'online'"
+                    [class.text-gray-400]="paymentMethod() !== 'online'"
+                  >
+
+                    <i class="fa-solid fa-credit-card"></i>
+
+                  </div>
+
+                  <div>
+
+                    <p class="text-sm font-semibold text-gray-800">
+                      Pay Online
+                    </p>
+
+                    <p class="text-xs text-gray-500 mt-0.5">
+                      Secure payment with Credit/Debit Card via Stripe
+                    </p>
+
+                    <div class="flex gap-1 mt-1">
+
+                      <span
+                        class="bg-blue-600 text-white text-[7px] font-bold px-1 rounded"
+                      >
+                        VISA
+                      </span>
+
+                      <span
+                        class="bg-gray-800 text-white text-[7px] font-bold px-1 rounded"
+                      >
+                        MC
+                      </span>
+
+                      <span
+                        class="bg-blue-500 text-white text-[7px] font-bold px-1 rounded"
+                      >
+                        AMEX
+                      </span>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+                <!-- Radio -->
+                <div
+                  class="w-5 h-5 rounded-full border flex items-center justify-center"
+                  [class.border-green-600]="paymentMethod() === 'online'"
+                  [class.border-gray-300]="paymentMethod() !== 'online'"
+                >
+
+                  @if (paymentMethod() === 'online') {
+
+                    <div
+                      class="w-2.5 h-2.5 bg-green-600 rounded-full"
+                    ></div>
+
+                  }
+
+                </div>
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================= RIGHT SIDE ================= -->
+
+        <div>
+
+          <div
+            class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden sticky top-5"
+          >
+
+            <!-- Header -->
+            <div class="bg-green-600 text-white px-4 py-3">
+
+              <div class="flex items-center gap-2 font-semibold">
+
+                <i class="fa-solid fa-lock"></i>
+
+                <span>
+                  Order Summary
+                </span>
+
+              </div>
+
+              <p class="text-xs text-green-100 mt-1">
+                {{ cartDetailsData().products?.length || 0 }} items
+              </p>
+
+            </div>
+
+
+            <!-- ================= PRODUCTS ================= -->
+
+            <div class="p-3 space-y-3">
+
+              @for (item of cartDetailsData().products; track item.product._id) {
+
+                <div
+                  class="flex items-center gap-3 border-b border-gray-100 pb-3 last:border-b-0 last:pb-0"
+                >
+
+                  <!-- Product Image -->
+                  <div
+                    class="w-16 h-16 shrink-0 bg-gray-50 rounded-lg border border-gray-100 overflow-hidden"
+                  >
+
+                    <img
+                      [src]="item.product.imageCover"
+                      [alt]="item.product.title"
+                      class="w-full h-full object-cover"
+                    />
+
+                  </div>
+
+
+                  <!-- Product Info -->
+                  <div class="flex-1 min-w-0">
+
+                    <h3
+                      class="text-sm font-semibold text-gray-800 truncate"
+                      [title]="item.product.title"
+                    >
+                      {{ item.product.title }}
+                    </h3>
+
+                    <p class="text-xs text-gray-500 mt-1">
+                      {{ item.count }} × {{ item.price }} EGP
+                    </p>
+
+                  </div>
+
+
+                  <!-- Product Total -->
+                  <div class="text-sm font-semibold text-gray-800 whitespace-nowrap">
+                    {{ item.price * item.count }} EGP
+                  </div>
+
+                </div>
+
+              }
+
+              <!-- Empty Products -->
+              @if (cartDetailsData().products?.length === 0) {
+
+                <div
+                  class="h-28 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-400 text-sm"
+                >
+                  Your cart is empty
+                </div>
+
+              }
+
+            </div>
+
+
+            <!-- Summary -->
+            <div class="px-4 pb-4">
+
+              <div class="border-t border-gray-100 pt-3">
+
+                <!-- Subtotal -->
+                <div class="flex justify-between items-center mb-3">
+
+                  <span class="text-sm text-gray-500">
+                    Subtotal
+                  </span>
+
+                  <span class="text-sm text-gray-600">
+                    {{ cartDetailsData().totalCartPrice || 0 }} EGP
+                  </span>
+
+                </div>
+
+
+                <!-- Shipping -->
+                <div class="flex justify-between items-center mb-4">
+
+                  <span class="text-sm text-gray-500 flex items-center gap-2">
+
+                    <i class="fa-solid fa-truck text-gray-400"></i>
+
+                    Shipping
+
+                  </span>
+
+                  <span class="text-sm font-medium text-green-600">
+                    FREE
+                  </span>
+
+                </div>
+
+
+                <!-- Total -->
+                <div
+                  class="border-t border-gray-100 pt-3 flex justify-between items-center"
+                >
+
+                  <span class="text-sm font-semibold text-gray-800">
+                    Total
+                  </span>
+
+                  <div>
+
+                    <span class="text-lg font-bold text-green-600">
+                      {{ cartDetailsData().totalCartPrice || 0 }}
+                    </span>
+
+                    <span class="text-xs text-gray-400 ml-1">
+                      EGP
+                    </span>
+
+                  </div>
+
+                </div>
+
+
+                <!-- SUBMIT BUTTON -->
+                <button
+                  type="submit"
+                  class="w-full mt-4 bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-200 text-white font-semibold rounded-lg text-sm px-5 py-3 transition-all shadow-sm"
+                >
+
+                  @if (paymentMethod() === 'cash') {
+
+                    <span class="flex items-center justify-center gap-2">
+
+                      <i class="fa-solid fa-bag-shopping"></i>
+
+                      Place Order
+
+                    </span>
+
+                  } @else {
+
+                    <span class="flex items-center justify-center gap-2">
+
+                      <i class="fa-solid fa-credit-card"></i>
+
+                      Pay Now
+
+                    </span>
+
+                  }
+
+                </button>
+
+
+                <!-- Features -->
+                <div
+                  class="flex justify-between items-center border-t border-gray-100 mt-4 pt-3"
+                >
+
+                  <div class="flex items-center gap-1 text-2xs text-gray-500">
+
+                    <i class="fa-solid fa-shield text-green-500"></i>
+
+                    Secure
+
+                  </div>
+
+                  <div class="flex items-center gap-1 text-2xs text-gray-500">
+
+                    <i class="fa-solid fa-truck-fast text-blue-500"></i>
+
+                    Fast Delivery
+
+                  </div>
+
+                  <div class="flex items-center gap-1 text-2xs text-gray-500">
+
+                    <i class="fa-solid fa-rotate-left text-orange-500"></i>
+
+                    Easy Returns
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+```
