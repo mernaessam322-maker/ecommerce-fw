@@ -189,7 +189,9 @@
 
             <button
               type="button"
-              class="w-full cursor-pointer bg-emerald-600 text-white font-bold py-3.5 rounded-xl hover:bg-emerald-700 transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-100"
+              (click)="addToCart()"
+              [disabled]="productIdData().quantity <= 0"
+              class="w-full cursor-pointer bg-emerald-600 text-white font-bold py-3.5 rounded-xl hover:bg-emerald-700 transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-100 disabled:bg-gray-400 disabled:cursor-not-allowed"
             >
               <i class="fas fa-shopping-cart"></i>
               Add to Cart
@@ -197,7 +199,8 @@
 
             <button
               type="button"
-              class="border cursor-pointer border-gray-200 py-3 rounded-xl font-bold text-gray-700 hover:bg-gray-50 transition-all"
+              (click)="addToWishlist()"
+              class="border cursor-pointer border-gray-200 py-3 rounded-xl font-bold text-gray-700 hover:bg-gray-50 transition-all flex items-center justify-center gap-2"
             >
               <i class="far fa-heart"></i>
               Add to Wishlist

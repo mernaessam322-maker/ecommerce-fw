@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Service } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
 import { ProductsDataResponse } from '../../../models/products-data.interface';
 import { ProductsDetailsResponse } from '../../../models/product-details.interface';
 
-@Service()
+@Injectable({
+  providedIn: 'root'
+})
 export class ProductsService {
     private readonly httpClient = inject(HttpClient);
 

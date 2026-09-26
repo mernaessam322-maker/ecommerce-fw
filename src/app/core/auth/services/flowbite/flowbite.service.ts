@@ -1,7 +1,9 @@
 import { isPlatformBrowser } from '@angular/common';
-import { inject, Inject, PLATFORM_ID, Service } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 
-@Service()
+@Injectable({
+  providedIn: 'root'
+})
 export class FlowbiteService {
   private platformId: any = inject(PLATFORM_ID);
   loadFlowbite(callback: (flowbite: any) => void) {

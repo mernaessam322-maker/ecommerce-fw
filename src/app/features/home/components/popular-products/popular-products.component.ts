@@ -44,6 +44,13 @@ export class PopularProductsComponent implements OnInit {
             timeOut: 2000,
           });
         }
+      },
+      error: (err) => {
+        console.error('Wishlist error:', err);
+        this.toastrService.error(err.error?.message || 'Failed to add to wishlist', 'Error', {
+          closeButton: true,
+          timeOut: 2000,
+        });
       }
     })
   }
@@ -57,6 +64,13 @@ export class PopularProductsComponent implements OnInit {
           });
         }
       },
+      error: (err) => {
+        console.error('Cart error:', err);
+        this.toastrService.error(err.error?.message || 'Failed to add to cart', 'Error', {
+          closeButton: true,
+          timeOut: 2000,
+        });
+      }
     });
   }
 }

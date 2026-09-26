@@ -1,0 +1,121 @@
+﻿
+> freshcart@0.0.0 build
+> ng build
+
+> Building...
+node.exe : 2 rules skipped due to selector errors:
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (2 rules skipped due to selector errors::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  () -> Empty sub-selector
+  () -> Empty sub-selector
+2 rules skipped due to selector errors:
+  () -> Empty sub-selector
+  () -> Empty sub-selector
+2 rules skipped due to selector errors:
+  () -> Empty sub-selector
+  () -> Empty sub-selector
+2 rules skipped due to selector errors:
+  () -> Empty sub-selector
+  () -> Empty sub-selector
+2 rules skipped due to selector errors:
+  () -> Empty sub-selector
+  () -> Empty sub-selector
+2 rules skipped due to selector errors:
+  () -> Empty sub-selector
+  () -> Empty sub-selector
+2 rules skipped due to selector errors:
+  () -> Empty sub-selector
+  () -> Empty sub-selector
+2 rules skipped due to selector errors:
+  () -> Empty sub-selector
+  () -> Empty sub-selector
+2 rules skipped due to selector errors:
+  () -> Empty sub-selector
+  () -> Empty sub-selector
+2 rules skipped due to selector errors:
+  () -> Empty sub-selector
+  () -> Empty sub-selector
+2 rules skipped due to selector errors:
+  () -> Empty sub-selector
+  () -> Empty sub-selector
+√ Building...
+Browser bundles     
+Initial chunk files  | Names                      |  Raw size | Estimated transfer size
+main-UHA4GP2T.js     | main                       | 294.82 kB |                72.38 kB
+styles-GESSVHXA.css  | styles                     | 192.07 kB |                33.26 kB
+chunk-CrJsoweZ.js    | -                          | 190.82 kB |                56.58 kB
+chunk-BN2yVr2m.js    | -                          |  46.85 kB |                14.36 kB
+chunk-B11hJUKN.js    | -                          |  14.31 kB |                 4.57 kB
+
+                     | Initial total              | 738.87 kB |               181.15 kB
+
+Lazy chunk files     | Names                      |  Raw size | Estimated transfer size
+chunk-2q8HQw30.js    | -                          |  43.39 kB |                 9.25 kB
+chunk-wkPGBNXl.js    | home-component             |  14.22 kB |                 3.81 kB
+chunk-BS0CZPSP.js    | checkout-component         |  14.05 kB |                 3.78 kB
+chunk-BI8HWcQN.js    | forgot-password-component  |  11.86 kB |                 2.89 kB
+chunk-Dc1CPNSA.js    | register-component         |   9.66 kB |                 2.59 kB
+chunk-B1msE_wg.js    | cart-component             |   9.52 kB |                 2.61 kB
+chunk-BL7IJcgG.js    | login-component            |   7.21 kB |                 2.23 kB
+chunk-5zYnOUgZ.js    | details-component          |   6.96 kB |                 2.03 kB
+chunk-CVkFVUVK.js    | category-details-component |   6.65 kB |                 2.29 kB
+chunk-DVF0i9FH.js    | brand-details-component    |   6.48 kB |                 2.26 kB
+chunk-qs-aTunf.js    | wishlist-component         |   6.36 kB |                 2.04 kB
+chunk-vJWVUF37.js    | shop-component             |   5.39 kB |                 1.99 kB
+chunk-8GCS06qF.js    | change-password-component  |   4.75 kB |                 1.53 kB
+chunk-CFvmoncI.js    | allorders-component        |   4.29 kB |                 1.63 kB
+chunk-BNOAxWyt.js    | catogeries-component       |   3.08 kB |                 1.27 kB
+...and 8 more lazy chunks files. Use "--verbose" to show all the files.
+
+
+Server bundles      
+Initial chunk files  | Names                      |  Raw size
+server.mjs           | server                     | 820.50 kB |                        
+main.server.mjs      | main.server                | 467.44 kB |                        
+polyfills.server.mjs | polyfills.server           | 235.00 kB |                        
+chunk-YW3PTX4Z.mjs   | -                          | 190.81 kB |                        
+chunk-GVY4HM3C.mjs   | -                          |  77.86 kB |                        
+chunk-AGFV26R4.mjs   | -                          |  46.85 kB |                        
+chunk-YJRYCFAL.mjs   | -                          |  17.11 kB |                        
+chunk-2HE2J4S5.mjs   | -                          |  14.49 kB |                        
+chunk-ITOR7NUX.mjs   | -                          |   1.38 kB |                        
+chunk-FXXGNZEX.mjs   | -                          |   1.05 kB |                        
+chunk-KYQQYI4M.mjs   | -                          |   1.01 kB |                        
+chunk-5BRUIIB4.mjs   | -                          |  99 bytes |                        
+
+Lazy chunk files     | Names                      |  Raw size
+chunk-AYKL2WNC.mjs   | -                          |  43.37 kB |                        
+chunk-HYDIA4DT.mjs   | home-component             |  14.13 kB |                        
+chunk-IGTAA44Y.mjs   | checkout-component         |  13.87 kB |                        
+chunk-RAKAREZO.mjs   | xhr2                       |  12.17 kB |                        
+chunk-XDZ7ZLR6.mjs   | xhr2                       |  12.08 kB |                        
+chunk-THL264RJ.mjs   | forgot-password-component  |  11.80 kB |                        
+chunk-WVNVCSDY.mjs   | register-component         |   9.60 kB |                        
+chunk-3L4YPK6S.mjs   | cart-component             |   9.44 kB |                        
+chunk-IXLVBLJY.mjs   | login-component            |   7.20 kB |                        
+chunk-CF6SBWYN.mjs   | details-component          |   6.88 kB |                        
+chunk-GK23Q4RJ.mjs   | category-details-component |   6.68 kB |                        
+chunk-F7M4UXIZ.mjs   | brand-details-component    |   6.51 kB |                        
+chunk-UYMVFMKV.mjs   | wishlist-component         |   6.33 kB |                        
+chunk-RODDH5RM.mjs   | shop-component             |   5.44 kB |                        
+chunk-2Q3N5MF3.mjs   | change-password-component  |   4.83 kB |                        
+...and 10 more lazy chunks files. Use "--verbose" to show all the files.
+
+Prerendered 11 static routes.
+Application bundle generation complete. [21.354 seconds] - 2026-09-24T17:10:41.891Z
+
+▲ [WARNING] bundle initial exceeded maximum budget. Budget 500.00 kB was not met by 238.87 kB with a total of 738.87 
+kB.
+
+
+▲ [WARNING] 2 rules skipped due to selector errors:
+  () -> Empty sub-selector
+  () -> Empty sub-selector
+
+
+Output location: C:\Users\emy\Desktop\training\e commercr project\eCommerce\dist\freshcart
+

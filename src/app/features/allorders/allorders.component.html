@@ -15,7 +15,7 @@
         </h1>
 
         <p class="text-gray-500 text-lg">
-          Track and manage your {{ orders.length }} orders
+          Track and manage your {{ orders().length }} orders
         </p>
       </div>
 
@@ -35,7 +35,7 @@
   <!-- Orders -->
   <div class="space-y-5">
 
-    @for (order of orders; track order._id) {
+    @for (order of orders(); track order._id) {
 
       <div class="bg-white border border-gray-200 rounded-2xl p-7 shadow-sm">
 

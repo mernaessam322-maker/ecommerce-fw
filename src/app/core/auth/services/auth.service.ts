@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Service, WritableSignal, signal } from '@angular/core';
+import { inject, Injectable, WritableSignal, signal } from '@angular/core';
 import { EMPTY, Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { UserDataResponse } from '../../models/sign-up.interface';
 import { Router } from '@angular/router';
 
-@Service()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
     private readonly httpClient = inject(HttpClient)
     private readonly router = inject(Router)
@@ -35,5 +37,8 @@ export class AuthService {
     }
      resetPassword(data:Object):Observable<any>{
         return this.httpClient.put<any>(`${environment.baseUrl}/api/v1/auth/resetPassword`,data)
+    }
+     changePassword(data:Object):Observable<any>{
+        return this.httpClient.put<any>(`${environment.baseUrl}/api/v1/auth/updateMe`,data)
     }
 }

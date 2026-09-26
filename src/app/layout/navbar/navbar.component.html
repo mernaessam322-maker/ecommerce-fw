@@ -87,10 +87,12 @@
         class="relative flex h-10 w-10 items-center justify-center rounded-full text-gray-600 transition-all hover:bg-gray-100 hover:text-emerald-600"
       >
         <i class="fas fa-shopping-cart text-xl"></i>
-        <span
-          class="absolute right-1 top-1 rounded-full border-2 border-white bg-emerald-600 px-1.5 text-2xs font-bold text-white"
-          >3</span
-        >
+        @if (cartCount() > 0) {
+          <span
+            class="absolute right-1 top-1 rounded-full border-2 border-white bg-emerald-600 px-1.5 text-2xs font-bold text-white"
+            >{{ cartCount() }}</span
+          >
+        }
       </button>
 
       <div class="hidden sm:flex items-center gap-4 pl-2 md:border-l md:border-gray-200 md:pl-4">

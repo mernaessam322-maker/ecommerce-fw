@@ -1,1 +1,43 @@
-<p>brands works!</p>
+<div class="min-h-screen bg-gray-50 py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="text-4xl font-bold text-gray-900 mb-2">Our Brands</h1>
+      <p class="text-gray-600">Explore our collection of trusted and quality brands</p>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="isLoading()" class="flex justify-center items-center h-64">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+    </div>
+
+    <!-- Brands Grid -->
+    <div *ngIf="!isLoading() && brands().length > 0" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div
+        *ngFor="let brand of brands()"
+        [routerLink]="['/brands', brand.slug, brand._id]"
+        class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 cursor-pointer"
+      >
+        <!-- Brand Image -->
+        <div class="relative bg-gray-200 h-56 overflow-hidden flex items-center justify-center">
+          <img
+            [src]="brand.image"
+            [alt]="brand.name"
+            class="w-full h-full object-contain p-4 hover:scale-110 transition duration-300"
+          />
+        </div>
+
+        <!-- Brand Info -->
+        <div class="p-6 text-center">
+          <h3 class="text-lg font-semibold text-gray-900">{{ brand.name }}</h3>
+          <p class="text-sm text-blue-600 mt-2 hover:underline">View Brand Products</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!isLoading() && brands().length === 0" class="text-center py-12">
+      <p class="text-gray-600 text-lg">No brands found</p>
+    </div>
+  </div>
+</div>

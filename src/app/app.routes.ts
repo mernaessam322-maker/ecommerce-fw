@@ -107,6 +107,31 @@ export const routes: Routes = [
   },
 
   {
+    path: 'change-password',
+    loadComponent: () =>
+      import('./features/change-password/change-password.component').then(
+        (m) => m.ChangePasswordComponent
+      ),
+    canActivate: [authGuard],
+  },
+
+  {
+    path: 'brands/:slug/:id',
+    loadComponent: () =>
+      import('./features/brand-details/brand-details.component').then(
+        (m) => m.BrandDetailsComponent
+      ),
+  },
+
+  {
+    path: 'categories/:slug/:id',
+    loadComponent: () =>
+      import('./features/category-details/category-details.component').then(
+        (m) => m.CategoryDetailsComponent
+      ),
+  },
+
+  {
     path: '**',
     loadComponent: () =>
       import('./features/not-found/not-found.component').then(

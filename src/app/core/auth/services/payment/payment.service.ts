@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Service, ɵNG_INJ_DEF } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
 import { CashPaymentResponse } from '../../../models/cash-payment.interface';
 import { OnlinePaymentResponse } from '../../../models/online-payment.interface';
 
-@Service()
+@Injectable({
+  providedIn: 'root'
+})
 export class PaymentService {
   private readonly httpClient = inject(HttpClient);
 

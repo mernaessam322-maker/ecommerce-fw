@@ -33,6 +33,9 @@ export class CartComponent implements OnInit {
               this.cartDetailsData.set(res.data);
             }
           },
+          error: (err) => {
+            console.error('Cart error:', err);
+          }
         });
       }
     }
