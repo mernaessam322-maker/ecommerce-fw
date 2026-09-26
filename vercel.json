@@ -1,5 +1,11 @@
 {
   "buildCommand": "npm install --legacy-peer-deps && npm run build",
   "outputDirectory": "dist/freshcart/browser",
-  "framework": "angular"
+  "framework": "angular",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
 }
